@@ -8,3 +8,11 @@
 	setState 함수를 여러번 사용해도 랜더링은 한번 일어난다.
 	react가 알아서 setState를 모아서 처리하기 때문이다.
 	그래서 setState는 비동기함수이다.
+
+# WEBPACK
+1. webpack을 왜 쓸까?
+	
+2. nodejs란?
+	javascript 실행기
+
+3. nodejs로 webpack을 실행시킨다.
