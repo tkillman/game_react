@@ -29,7 +29,125 @@
             }
         }
 
-        ReactDOM.render(<LikeButton/>, document.querySelector('#root'));
+        //구구단
+        class Gugu extends React.Component {
+            constructor(props){
+                super(props);
+                this.state= {
+                    firstNumber : this.makeNumber(),
+                    lastNumber : this.makeNumber(),
+                    inputText : '',
+                    resultText : ''
+                }
+            }
+            
+            makeNumber = () => {
+                let rtnValue = 1;
+                rtnValue =  Math.floor(Math.random() * 9);
+                if (rtnValue === 0) {
+                    rtnValue += 1;
+                }
+                return rtnValue;
+            }
+
+            btnClick = () => {
+                let resultTxt = '';
+                if (this.state.firstNumber * this.state.lastNumber === Number(this.state.inputText)) {
+                    resultTxt = '딩동댕';
+                } else {
+                    resultTxt = '땡';
+                }
+
+                this.setState((prev) => {
+                    return {
+                        resultText :  resultTxt
+                    };
+                });
+
+                if (resultTxt === '딩동댕') {
+                    this.setState(() => { 
+                        return {
+                            firstNumber : this.makeNumber(),
+                            lastNumber : this.makeNumber(),
+                            inputText : ''
+                        }
+                    })
+                }
+
+                this.input.focus();
+            }
+
+            input;
+            
+            render(){
+                console.log('랜더링');
+                return(
+                    <div>
+                        <div>Gugn1</div>
+                        <span>{this.state.firstNumber} 곱하기 {this.state.lastNumber}는?</span>
+                        <input ref={(c) => {this.input = c}} type="number" onChange={(e) => {
+                                                    console.log(e.target.value);
+                                                    this.setState({
+                                                        inputText : e.target.value
+                                                    })
+                                                    }} value={this.state.inputText}></input>
+                        <button onClick={this.btnClick}>버튼</button>
+                        <span>{this.state.resultText}</span>
+                    </div>
+                );
+            }
+        }
+
+        const Gugu2 = () => {
+
+            const makeNumber2 = () => {
+                let rtnValue = 1;
+                rtnValue =  Math.floor(Math.random() * 9);
+                if (rtnValue === 0) {
+                    rtnValue += 1;
+                }
+                return rtnValue;
+            }
+
+            const [firstNum, setFirstNum] = React.useState(makeNumber2()); 
+            const [lastNum, setLastNum] = React.useState(makeNumber2());
+            const [inputText2, setInputText2] = React.useState('');
+            const [resultText2, setResultText2] = React.useState('');
+
+            const refInput = React.useRef(null);
+
+            const btnClick2 = () => {
+                let resultTxt = '';
+                if (firstNum * lastNum === Number(inputText2)) {
+                    resultTxt = '딩동댕';
+                } else {
+                    resultTxt = '땡';
+                }
+                setResultText2(resultTxt);
+
+                if (resultTxt === '딩동댕') {
+                    setFirstNum(makeNumber2());
+                    setLastNum(makeNumber2());
+                    setInputText2('');
+                }
+
+                refInput.current.focus();
+            };
+
+            return (
+                <div>
+                    <div>Gugu2</div>
+                    <span>{firstNum} 곱하기 {lastNum}는?</span>
+                    <input ref={refInput} type="number" onChange={(e) => {
+                                                    console.log(e.target.value);
+                                                    setInputText2(e.target.value);
+                                                    }} value={inputText2}></input>
+                    <button onClick={btnClick2}>버튼</button> 
+                    <span>{resultText2}</span>                               
+                </div>)
+        }
+
+        ReactDOM.render(<div><LikeButton/><Gugu/><Gugu2/></div>, document.querySelector('#root'));
     </script>
 
 </body>
