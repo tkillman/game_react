@@ -4,7 +4,8 @@
   "description": "1. React란? 컴포넌트 기반 javascript 라이브러리 2. React State \tsetState는 비동기함수이다. 비동기인 이유는 아래에 3. ref 4. hooks \tsetState 함수를 여러번 사용해도 랜더링은 한번 일어난다. \treact가 알아서 setState를 모아서 처리하기 때문이다. \t그래서 setState는 비동기함수이다.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --env development"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,18 @@
   },
   "homepage": "https://github.com/tkillman/game_react#readme",
   "dependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-refresh": "^0.10.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2"
   }
